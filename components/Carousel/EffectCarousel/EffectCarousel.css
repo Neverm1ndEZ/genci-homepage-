@@ -1,0 +1,37 @@
+
+.mySwiper.swiper{
+    margin-top: 25px;
+
+}
+.mySwiper.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+  }
+  
+  .mySwiper.swiper-slide {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: auto;
+    transition: transform 0.3s;
+  }
+  
+  .mySwiper.swiper-slide-active {
+    z-index: 100;
+    transform: scale(1.5);
+  }
+     
+  .mySwiper img {
+     border-radius: 20px;  
+     height: auto;
+    }
+  .mySwiper .swiper-pagination-bullet {
+    background-color: white;
+  }
+  
+  .mySwiper .swiper-pagination-bullet-active {
+    background-color: white;
+  }

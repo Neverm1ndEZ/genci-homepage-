@@ -1,4 +1,6 @@
 import '@/assets/base.css';
+import '../components/Carousel/BannerCarousel/BannerCarousel.css';
+import '../components/Carousel/EffectCarousel/EffectCarousel.css';
 import { Layout } from '@/components/Layout';
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from 'react-hot-toast';

@@ -1,9 +1,11 @@
-import Carousel from '@/components/Carousel/Carousel';
 import { Wrapper } from '@/components/Layout';
+import EffectCarousel from '@/components/Carousel/EffectCarousel/EffectCarousel';
+import BannerCarousel from '@/components/Carousel/BannerCarousel/BannerCarousel';
 const Hero = () => {
   return (
     <Wrapper>
-      <Carousel />
+      <EffectCarousel />
+      <BannerCarousel />
     </Wrapper>
   );
 };
