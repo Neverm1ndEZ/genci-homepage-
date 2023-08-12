@@ -24,6 +24,7 @@
     "@emotion/styled": "^11.11.0",
     "@lukeed/ms": "^2.0.0",
     "@mui/material": "^5.14.4",
+    "@mui/x-date-pickers": "^6.11.1",
     "ajv": "^8.11.0",
     "aos": "^2.3.4",
     "bcryptjs": "^2.4.3",

@@ -4,7 +4,7 @@ import CourseCompletion from '../CourseCompletion/CourseCompletion';
 import ProfileNotificationIcon from '../ProfileNotificationIcon/ProfileNotificationIcon';
 const RightSidebar = () => {
   return (
-    <div className="bg-gray-800 lg:w-80 fixed right-0 top-0 z-10 h-screen">
+    <div className="bg-gray-900 lg:w-80 px-1 fixed right-0 top-0 z-10 h-screen">
       <ProfileNotificationIcon />
       <RightCalendar />
       <Badges />
