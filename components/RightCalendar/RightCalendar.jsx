@@ -49,7 +49,7 @@ const RightCalendar = () => {
   );
 
   return (
-    <div className="bg-gray-100 scale-[80%] flex flex-col items-center justify-center">
+    <div className="bg-gray-100 dark:bg-gray-800 scale-[80%] flex flex-col items-center justify-center">
       <div className="flex flex-col gap-4">
         <div>
           <Calendar

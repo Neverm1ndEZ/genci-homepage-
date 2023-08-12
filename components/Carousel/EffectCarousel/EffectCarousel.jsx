@@ -31,9 +31,9 @@ export default function EffectCarousel() {
         autoplay={true}
         coverflowEffect={{
           rotate: 0,
-          stretch: 5,
+          stretch: 10,
           depth: 50,
-          modifier: 5,
+          modifier: 7,
           slideShadows: true,
         }}
         pagination={true}

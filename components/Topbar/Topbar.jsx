@@ -17,10 +17,10 @@ const Topbar = () => {
 
     return (
       <label className="flex items-center space-x-2">
-        <span className="text-gray-400 dark:text-gray-600">
+        <span className="text-gray-400 dark:text-black">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
+            fill="#1A85FF"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
@@ -47,10 +47,10 @@ const Topbar = () => {
             }}
           />
         </div>
-        <span className="text-gray-400 dark:text-gray-600">
+        <span className="text-gray-400 dark:text-black">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
+            fill="#1A85FF"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
@@ -68,9 +68,9 @@ const Topbar = () => {
   };
 
   return (
-    <div className="flex items-center justify-around mx-auto fixed w-full z-10 top-0 h-20 pr-80 pl-20">
+    <div className="flex items-center justify-around mx-auto fixed w-full z-10 top-0 h-20 pr-80 pl-20 bg-slate-300 dark:bg-gray-800 rounded-xl">
       <div className="max-w-3xl">
-        <div className="relative flex w-full h-12 focus-within:shadow-lg bg-[#fff] dark:bg-[#0D0D0D] overflow-hidden rounded-full">
+        <div className="relative flex w-full h-12 my-10 focus-within:shadow-lg bg-[#fff] dark:bg-[#0D0D0D] overflow-hidden rounded-full">
           <div className="flex items-center mx-3 h-full w-12">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +89,7 @@ const Topbar = () => {
           </div>
 
           <input
-            className="peer h-full w-screen outline-none text-sm bg-[#fff] dark:bg-[#0D0D0D] pr-2"
+            className="peer h-full w-screen outline-none mx-5 text-sm bg-[#fff] dark:bg-[#0D0D0D] pr-2"
             type="text"
             id="search"
             placeholder="Search Courses, Documents, Activities..."
