@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { format } from 'date-fns';
+import { LocalizationProvider } from '@mui/x-date-pickers';
 
 export default function TodoList() {
   const [tasks, setTasks] = useState([]);
@@ -9,7 +13,7 @@ export default function TodoList() {
 
   const addTask = () => {
     if (newTask.trim() !== '' && taskDate) {
-      setTasks([...tasks, { text: newTask, date: taskDate, completed: false }]);
+      setTasks([...tasks, { text: newTask, date: taskDate }]);
       setNewTask('');
       setTaskDate(null);
     }
@@ -20,68 +24,73 @@ export default function TodoList() {
     setTasks(updatedTasks);
   };
 
-  const toggleTaskCompletion = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].completed = !updatedTasks[index].completed;
-    setTasks(updatedTasks);
-  };
 
   return (
-    <div className="bg-gray-900 text-white mx-auto w-3/5 p-6 mt-20 rounded-lg shadow-md">
-      <h1 className="text-gray-50 text-xl font-bold mb-4">Todo List</h1>
-      <hr className="bg-gray-700 h-[1px]" />
-      <div className="flex space-x-4 mt-6 mb-6">
-        <input
-          type="text"
-          className="border rounded-xl py-2 px-3 flex-grow bg-gray-800 text-white"
-          placeholder="Add a new task"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-        />
-        <DatePicker
-          selected={taskDate}
-          onChange={(date) => setTaskDate(date)}
-          dateFormat="dd/MM/yyyy"
-          className="border rounded-xl py-2 px-3 bg-gray-800 text-white"
-          placeholderText="Select Date"
-        />
-        <button
-          className="bg-blue-500 text-white py-2 px-4 rounded-xl hover:bg-blue-600"
-          onClick={addTask}
-        >
-          Add
-        </button>
-      </div>
-      <ul className="space-y-2">
-        {tasks.map((task, index) => (
-          <li
-            key={index}
-            className={`flex items-center space-x-2 ${
-              task.completed ? 'line-through text-gray-400' : ''
-            }`}
-          >
-            <input
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => toggleTaskCompletion(index)}
-              className="form-checkbox text-blue-500 h-5 w-5"
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <div className="bg-gray-900 text-white mx-auto w-3/5 p-6 mt-20 rounded-lg shadow-md">
+        <div className="w-full flex justify-between items-center">
+          <h1 className="text-gray-50 text-2xl font-bold">Todo List</h1>
+          <div className="flex gap-4 items-center my-4">
+            <TextField
+              type="text"
+              variant="outlined"
+              className="bg-white rounded-md w-32"
+              placeholder="New Task.."
+              value={newTask}
+              size="small"
+              onChange={(e) => setNewTask(e.target.value)}
             />
-            <span className="text-white">{task.text}</span>
-            {task.date && (
-              <span className="text-sm text-gray-400 ml-2">
-                {task.date.toLocaleDateString()}
-              </span>
-            )}
-            <button
-              className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600 ml-auto"
-              onClick={() => deleteTask(index)}
+            <DatePicker
+              className="bg-white rounded-md text-gray-500 w-40"
+              value={taskDate}
+              onChange={(newValue) => setTaskDate(newValue)}
+              slotProps={{ textField: { size: 'small' } }}
+              renderInput={(params) => (
+                <TextField {...params} variant="outlined" size="small" />
+              )}
+              placeholder="Select Date"
+            />
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={addTask}
             >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
-      <hr className="bg-gray-700 mt-4 h-[1px]" />
-    </div>
+              Add
+            </Button>
+          </div>
+        </div>
+
+        <hr className="bg-gray-700 h-[1px]" />
+
+        <ul>
+          {tasks.map((task, index) => (
+            <li
+              key={index}
+              className={`flex items-center py-3 px-2 justify-between w-full  ${
+                task.completed ? 'line-through text-gray-400' : ''
+              }`}
+            >
+              <div
+                className='flex items-center text-base text-gray-300 w-3/5'
+              >
+                {task.text}
+              </div>
+              {task.date && (
+                <span className="text-sm text-gray-400 ml-2">
+                  {format(task.date, 'dd/MM/yyyy')}
+                </span>
+              )}
+              <button
+                className="hover:text-red-400 transition-all duration-300 grid place-content-center p-1 aspect-square rounded-full"
+                onClick={() => deleteTask(index)}
+              >
+                <span className="material-symbols-outlined w-full">delete</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+        <hr className="bg-gray-700  h-[1px]" />
+      </div>
+    </LocalizationProvider>
   );
 }

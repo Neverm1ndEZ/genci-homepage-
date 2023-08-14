@@ -65,7 +65,7 @@ body {
 
 .MuiDateCalendar-root {
   width: 305px !important;
-  height: 280px !important;
+  height: 275px !important;
   background: rgba(200, 200, 200, 0.05) !important;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
   color: white !important;
@@ -87,4 +87,12 @@ body {
 .MuiPickersFadeTransitionGroup-root,
 .MuiDateCalendar-viewTransitionContainer {
   transform: scale(0.95);
+}
+
+.MuiPaper-root, .MuiPaper-elevation, .MuiPaper-rounded, .MuiPaper-elevation8, .MuiPickersPopper-paper {
+  background: #111827 !important;
+}
+
+.MuiSvgIcon-root{
+  color: #111827
 }

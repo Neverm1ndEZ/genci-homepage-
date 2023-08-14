@@ -68,7 +68,7 @@ const Topbar = () => {
   };
 
   return (
-    <div className="flex items-center justify-around mx-auto fixed w-full z-10 top-0 h-20 pr-80 pl-20 bg-slate-300 dark:bg-gray-800 rounded-xl">
+    <div className="flex items-center justify-around mx-auto fixed w-full z-10 top-0 h-20 pr-80 pl-20 bg-slate-300 dark:bg-gray-900 rounded-xl">
       <div className="max-w-3xl">
         <div className="relative flex w-full h-12 my-10 focus-within:shadow-lg bg-[#fff] dark:bg-[#0D0D0D] overflow-hidden rounded-full">
           <div className="flex items-center mx-3 h-full w-12">

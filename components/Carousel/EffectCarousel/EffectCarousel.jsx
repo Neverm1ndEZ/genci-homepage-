@@ -42,7 +42,7 @@ export default function EffectCarousel() {
       >
         {link.map((links, key) => (
           <SwiperSlide key={key}>
-            <img src={links.label} />
+            <img src={links.label} className='w-full object-cover'/>
           </SwiperSlide>
         ))}
       </Swiper>
