@@ -40,8 +40,8 @@ export default function EffectCarousel() {
         modules={[EffectCoverflow, Pagination]}
         className="mySwiper"
       >
-        {link.map((links, key) => (
-          <SwiperSlide key={key}>
+        {link.map((links, index) => (
+          <SwiperSlide key={index}>
             <img src={links.label} className='w-full object-cover'/>
           </SwiperSlide>
         ))}

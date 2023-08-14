@@ -26,8 +26,8 @@ export default function BannerCarousel() {
           modules={[Pagination, Autoplay]}
           className="tech"
         >
-          {links.map((link) => (
-            <SwiperSlide>
+          {links.map((link, index) => (
+            <SwiperSlide key={index}>
               <img src={link.label} />
             </SwiperSlide>
           ))}
