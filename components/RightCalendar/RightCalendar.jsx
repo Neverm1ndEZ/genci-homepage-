@@ -1,24 +1,44 @@
-import React, { useState } from 'react';
-
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import React, { useRef } from 'react';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-const Calendar = () => {
-  const [value, setValue] = useState(new Date());
-  const [highlightedDays, setHighlightedDays] = useState([1, 2, 13]);
-  return (
-    <div className=" font-sans">
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DateCalendar
-          value={value}
-          onChange={(newValue) => setValue(newValue)}
-          style={{ backgroundColor: 'white', color: 'black' }}
-          className="rounded-md overflow-scroll "
-        />
-      </LocalizationProvider>
-    </div>
-  );
-};
+import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
+import ServerDay from './ServerDay'; // Import the ServerDay component
 
-export default Calendar;
+function DateCalendarServerRequest() {
+  const demoData = [
+    { text: 'Task 1', date: '2023-08-20' },
+    { text: 'Task 2', date: '2025-08-30' },
+    { text: 'Task 3', date: '2023-08-26' },
+  ];
+
+  const highlightedDates = demoData.map((obj) => obj.date);
+
+  const calendarRef = useRef();
+
+  const handleYearChange = () => {
+    if (calendarRef.current) {
+      calendarRef.current.scrollTo(0, 0);
+    }
+  };
+
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DateCalendar
+        ref={calendarRef}
+        onYearChange={handleYearChange}
+        renderLoading={() => <DayCalendarSkeleton />}
+        slots={{
+          day: (props) => <ServerDay {...props} demoData={demoData} />,
+        }}
+        slotProps={{
+          day: {
+            highlightedDays: highlightedDates,
+          },
+        }}
+      />
+    </LocalizationProvider>
+  );
+}
+
+export default DateCalendarServerRequest;

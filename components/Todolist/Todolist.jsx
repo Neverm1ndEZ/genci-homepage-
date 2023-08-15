@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { parse } from 'date-fns'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { format } from 'date-fns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
+import { TodoListContext } from 'context/context';
 
 export default function TodoList() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
   const [taskDate, setTaskDate] = useState(null);
+  const { setIsPosted } = useContext(TodoListContext);
 
   const addTask = () => {
     if (newTask.trim() !== '' && taskDate) {
-      setTasks([...tasks, { text: newTask, date: taskDate }]);
+      const formattedDate = format(taskDate, 'yyyy-MM-dd'); // Format the date as 'YYYY-MM-DD'
+      setTasks([...tasks, { text: newTask, date: formattedDate }]);
       setNewTask('');
       setTaskDate(null);
+      setIsPosted(true);
+      console.log(JSON.stringify(tasks));
     }
   };
 
@@ -23,7 +29,6 @@ export default function TodoList() {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
   };
-
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -45,16 +50,9 @@ export default function TodoList() {
               value={taskDate}
               onChange={(newValue) => setTaskDate(newValue)}
               slotProps={{ textField: { size: 'small' } }}
-              renderInput={(params) => (
-                <TextField {...params} variant="outlined" size="small" />
-              )}
               placeholder="Select Date"
             />
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={addTask}
-            >
+            <Button variant="contained" color="secondary" onClick={addTask}>
               Add
             </Button>
           </div>
@@ -70,14 +68,12 @@ export default function TodoList() {
                 task.completed ? 'line-through text-gray-400' : ''
               }`}
             >
-              <div
-                className='flex items-center text-base text-gray-300 w-3/5'
-              >
+              <div className="flex items-center text-base text-gray-300 w-3/5">
                 {task.text}
               </div>
               {task.date && (
                 <span className="text-sm text-gray-400 ml-2">
-                  {format(task.date, 'dd/MM/yyyy')}
+                   {format(parse(task.date, 'yyyy-MM-dd', new Date()), 'dd/MM/yyyy')}
                 </span>
               )}
               <button
